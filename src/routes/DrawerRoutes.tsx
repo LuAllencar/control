@@ -28,16 +28,16 @@ function CustomDrawerContent (props: any) {
         foto: "https://i.pravatar.cc/100"
     };
 
-    return {
+    return (
         <View style={styles.container}>
-        <DrawerContentScrollView {...props}>
-        <View style={StyleSheet.header}>
-        <Image
+            <DrawerContentScrollView {...props}>
+            <View style={styles.header}>
+            <Image
             source={{ uri: user.foto}}
-            style={StyleSheet.avatar}
+            style={styles.avatar}
             />
-        <Text style={StyleSheet.name}>
-        {user.name}
+        <Text style={styles.name}>
+        {user.nome}
         </Text>
 
         </View>
@@ -49,7 +49,7 @@ function CustomDrawerContent (props: any) {
         <View style={styles.footer}>
         <TouchableOpacity
             style={styles.logoutButton}
-            onPress={() => console.log("Logout")} 
+            onPress={() => console.log("Logout")}
             >
             <Ionicons name="log-out-outline" size={22} color="#fff" />
             <Text style={styles.logoutText}>
@@ -60,7 +60,7 @@ function CustomDrawerContent (props: any) {
 
         </View>
         </View>
-    };
+    );
 }
 
 export default function DrawerRouter( ) {
@@ -82,30 +82,78 @@ export default function DrawerRouter( ) {
                         <Ionicons name="home-outline" size={size} color={color} />
                     )
                 }}
+            />
             <Drawer.Screen
                 name="Entidade"
                 component={EntidadeScreen}
                 options={{
                     drawerIcon: ({color, size}) => (
-                        <Ionicons name="entidade-outline" size={size} color={color} />
+                        <Ionicons name="person-add" size={size} color={color} />
                     )
                 }}
+
+                />
             <Drawer.Screen
                 name="Contas a Pagar"
                 component={ContasPagarScreen}
                 options={{
                     drawerIcon: ({color, size}) => (
-                        <Ionicons name="home-outline" size={size} color={color} />
+                        <Ionicons name="wallet-outline" size={size} color={color} />
                     )
                 }}
+            />
+
             <Drawer.Screen
                 name="Contas a Receber"
                 component={ContasReceberScreen}
                 options={{
                     drawerIcon: ({color, size}) => (
-                        <Ionicons name="home-outline" size={size} color={color} />
+                        <Ionicons name="cash-outline" size={size} color={color} />
                     )
                 }}
+            />
             </Drawer.Navigator>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    header: {
+        padding: 25,
+        backgroundColor: "#1E88E5",
+        alignItems: "center"
+    },
+    avatar: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        marginBottom: 10
+    },
+    name: {
+        color: "#fff",
+        fontSize: 18,
+        fontWeight: "bold"
+    },
+    footer: {
+        padding: 15,
+        paddingBottom: 35,
+        borderTopWidth: 3,
+        borderTopColor: "#eee"
+    },
+    logoutButton: {
+        backgroundColor: "#1E88E5",
+        padding: 15,
+        borderRadius: 10,
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: 8,
+    },
+    logoutText: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold"
+    }
+});
